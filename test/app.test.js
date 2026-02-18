@@ -26,17 +26,16 @@ test("GET /api/quotes/murder-drones returns quotes", async () => {
   assert.ok(response.body.total > 0);
 });
 
-test("POST /api/quotes/:series inserts one quote", async () => {
+test("POST /api/quotes/:series is blocked for public users", async () => {
   const response = await request(app)
     .post("/api/quotes/murder-drones")
-    .send({ speaker: "Tester", quote: "Fresh quote for insert endpoint." });
+    .send({ speaker: "Tester", quote: "Should be rejected." });
 
-  assert.equal(response.status, 201);
-  assert.equal(response.body.series, "murder-drones");
-  assert.equal(response.body.quote.speaker, "Tester");
+  assert.equal(response.status, 403);
+  assert.match(response.body.error, /disabled/i);
 });
 
-test("POST /api/quotes/:series/bulk inserts many quotes", async () => {
+test("POST /api/quotes/:series/bulk is blocked for public users", async () => {
   const response = await request(app)
     .post("/api/quotes/murder-drones/bulk")
     .send({
@@ -46,9 +45,8 @@ test("POST /api/quotes/:series/bulk inserts many quotes", async () => {
       ]
     });
 
-  assert.equal(response.status, 201);
-  assert.equal(response.body.series, "murder-drones");
-  assert.equal(response.body.inserted, 2);
+  assert.equal(response.status, 403);
+  assert.match(response.body.error, /disabled/i);
 });
 
 test("GET /api/quotes/murder-drones/random returns one quote", async () => {
@@ -64,4 +62,20 @@ test("GET /api/quotes/unknown returns 404", async () => {
 
   assert.equal(response.status, 404);
   assert.ok(response.body.availableSeries);
+});
+
+test("GET /api/quotes with invalid slug returns 400", async () => {
+  const response = await request(app).get("/api/quotes/bad_slug!");
+
+  assert.equal(response.status, 400);
+  assert.match(response.body.error, /invalid series format/i);
+});
+
+test("Security headers are present", async () => {
+  const response = await request(app).get("/api/quotes");
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers["x-content-type-options"], "nosniff");
+  assert.equal(response.headers["x-frame-options"], "DENY");
+  assert.ok(response.headers["content-security-policy"]);
 });

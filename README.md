@@ -1,6 +1,6 @@
 # MDquotes
 
-Expandable quotes API where each series has its own endpoint.
+Modern quote platform for **Murder Drones** with a polished, secure, read-only frontend.
 
 ## What "MD" means
 MD = **Murder Drones**.
@@ -11,23 +11,33 @@ npm install
 npm start
 ```
 
-Server runs on `http://localhost:3000` by default.
+Open `http://localhost:3000` to use the web app.
+
+## Features
+- Visual dashboard to browse all available series.
+- Random quote viewer per series.
+- Full quote list display for each series.
+- Public experience is read-only (quote uploads are blocked).
+
+## Security hardening
+- Quote write endpoints return `403` for public users.
+- API rate limiting per client IP.
+- Strict series slug validation.
+- Response security headers (`CSP`, `X-Frame-Options`, `nosniff`, etc.).
+- `express.json` request body size limit and strict parsing.
 
 ## Database and quote management
-This API uses SQLite at `data/mdquotes.db`.
+This app uses SQLite at `data/mdquotes.db`.
 
 - `data/seed.sql` seeds base series.
 - `data/quotes.json` is the structured source used for first-run quote import.
-- Add new quotes without editing SQL by using:
-  - `POST /api/quotes/:series` for single insert
-  - `POST /api/quotes/:series/bulk` for batch insert
 
 Override database location with `DB_PATH`.
 
-## Endpoints
+## API endpoints
 - `GET /api/health` - API health check.
 - `GET /api/quotes` - API info + available series.
 - `GET /api/quotes/:series` - all quotes for one series.
 - `GET /api/quotes/:series/random` - one random quote for a series.
-- `POST /api/quotes/:series` - add one quote (`{ "speaker": "...", "quote": "..." }`).
-- `POST /api/quotes/:series/bulk` - add many quotes (`{ "quotes": [{ "speaker": "...", "quote": "..." }] }`).
+- `POST /api/quotes/:series` - disabled for public users (`403`).
+- `POST /api/quotes/:series/bulk` - disabled for public users (`403`).

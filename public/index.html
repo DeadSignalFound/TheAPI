@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MDquotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+    <main class="layout">
+      <header class="hero card">
+        <p class="tag">Murder Drones Quote Library</p>
+        <h1>Explore iconic lines in a safe, read-only experience.</h1>
+        <p class="subtitle">
+          Browse all supported series and pull random quotes instantly. Public quote uploads are disabled for security.
+        </p>
+      </header>
+
+      <section class="grid">
+        <article class="card panel">
+          <div class="panel-head">
+            <h2>Series</h2>
+            <span id="series-count" class="badge">0</span>
+          </div>
+          <div id="series-list" class="series-list"></div>
+        </article>
+
+        <article class="card panel quote-viewer">
+          <div class="panel-head">
+            <h2 id="active-series-label">Select a series</h2>
+            <button id="refresh-random" class="btn ghost" disabled>Random quote</button>
+          </div>
+
+          <blockquote id="random-quote" class="quote-box muted">
+            Pick a series to view a random quote.
+          </blockquote>
+
+          <div id="quotes-table" class="quotes-table muted">Series quotes will appear here.</div>
+        </article>
+      </section>
+
+      <section class="card panel notice-panel">
+        <div class="panel-head">
+          <h2>Security Notice</h2>
+        </div>
+        <p class="subtitle">
+          This frontend is read-only. Quote creation endpoints are blocked for public users to protect data integrity.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="/frontend.js"></script>
+  </body>
+</html>

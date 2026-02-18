@@ -3,6 +3,12 @@ import path from "node:path";
 import Database from "better-sqlite3";
 
 const rootDir = path.resolve(path.join(import.meta.dirname, "..", ".."));
+import { fileURLToPath } from "node:url";
+import Database from "better-sqlite3";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(path.join(__dirname, "..", ".."));
 const defaultDbPath = path.join(rootDir, "data", "mdquotes.db");
 const seedSqlPath = path.join(rootDir, "data", "seed.sql");
 

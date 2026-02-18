@@ -1,0 +1,25 @@
+{
+  "name": "mdquotes-api",
+  "version": "1.0.0",
+  "description": "Expandable quotes API with dedicated endpoints per series",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "api",
+    "quotes",
+    "murder-drones"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
+}

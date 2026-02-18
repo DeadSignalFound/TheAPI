@@ -38,9 +38,9 @@ function insertDefaultSeries() {
   }
 }
 
-function importQuotesFromJson() {
+export function importQuotesFromJson({ skipExisting = true } = {}) {
   if (!fs.existsSync(quotesJsonPath)) {
-    return;
+    return { inserted: 0, skipped: 0 };
   }
 
   const raw = fs.readFileSync(quotesJsonPath, "utf8");
@@ -53,6 +53,14 @@ function importQuotesFromJson() {
   const insertQuote = db.prepare(
     "INSERT INTO quotes (series_id, speaker, quote_text) VALUES (?, ?, ?)"
   );
+  const checkQuote = skipExisting
+    ? db.prepare(
+        "SELECT 1 FROM quotes WHERE series_id = ? AND speaker = ? AND quote_text = ?"
+      )
+    : null;
+
+  let inserted = 0;
+  let skipped = 0;
 
   const tx = db.transaction(() => {
     for (const [slug, quotes] of Object.entries(data)) {
@@ -69,19 +77,30 @@ function importQuotesFromJson() {
           continue;
         }
 
+        if (skipExisting) {
+          const exists = checkQuote.get(series.id, quoteItem.speaker, quoteItem.quote);
+          if (exists) {
+            skipped += 1;
+            continue;
+          }
+        }
+
         insertQuote.run(series.id, quoteItem.speaker, quoteItem.quote);
+        inserted += 1;
       }
     }
   });
 
   tx();
+
+  return { inserted, skipped };
 }
 
 insertDefaultSeries();
 
 const quoteCount = db.prepare("SELECT COUNT(*) AS count FROM quotes").get().count;
 if (quoteCount === 0) {
-  importQuotesFromJson();
+  importQuotesFromJson({ skipExisting: false });
 }
 
 function getSeriesRecord(slug) {

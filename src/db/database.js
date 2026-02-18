@@ -3,14 +3,9 @@ import path from "node:path";
 import Database from "better-sqlite3";
 
 const rootDir = path.resolve(path.join(import.meta.dirname, "..", ".."));
-import { fileURLToPath } from "node:url";
-import Database from "better-sqlite3";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(path.join(__dirname, "..", ".."));
 const defaultDbPath = path.join(rootDir, "data", "mdquotes.db");
 const seedSqlPath = path.join(rootDir, "data", "seed.sql");
+const quotesJsonPath = path.join(rootDir, "data", "quotes.json");
 
 const dbPath = process.env.DB_PATH ?? defaultDbPath;
 const db = new Database(dbPath);
@@ -34,10 +29,60 @@ db.exec(`
   );
 `);
 
-const seriesCount = db.prepare("SELECT COUNT(*) AS count FROM series").get().count;
-if (seriesCount === 0 && fs.existsSync(seedSqlPath)) {
-  const seedSql = fs.readFileSync(seedSqlPath, "utf8");
-  db.exec(seedSql);
+function insertDefaultSeries() {
+  if (fs.existsSync(seedSqlPath)) {
+    db.exec(fs.readFileSync(seedSqlPath, "utf8"));
+  }
+}
+
+function importQuotesFromJson() {
+  if (!fs.existsSync(quotesJsonPath)) {
+    return;
+  }
+
+  const raw = fs.readFileSync(quotesJsonPath, "utf8");
+  const data = JSON.parse(raw);
+
+  const insertSeries = db.prepare(
+    "INSERT INTO series (slug, name) VALUES (?, ?) ON CONFLICT(slug) DO NOTHING"
+  );
+  const getSeriesId = db.prepare("SELECT id FROM series WHERE slug = ?");
+  const insertQuote = db.prepare(
+    "INSERT INTO quotes (series_id, speaker, quote_text) VALUES (?, ?, ?)"
+  );
+
+  const tx = db.transaction(() => {
+    for (const [slug, quotes] of Object.entries(data)) {
+      const fallbackName = slug
+        .split("-")
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+
+      insertSeries.run(slug, fallbackName);
+      const series = getSeriesId.get(slug);
+
+      for (const quoteItem of quotes) {
+        if (!quoteItem?.speaker || !quoteItem?.quote) {
+          continue;
+        }
+
+        insertQuote.run(series.id, quoteItem.speaker, quoteItem.quote);
+      }
+    }
+  });
+
+  tx();
+}
+
+insertDefaultSeries();
+
+const quoteCount = db.prepare("SELECT COUNT(*) AS count FROM quotes").get().count;
+if (quoteCount === 0) {
+  importQuotesFromJson();
+}
+
+function getSeriesRecord(slug) {
+  return db.prepare("SELECT id, slug FROM series WHERE slug = ?").get(slug) ?? null;
 }
 
 export function getSeriesList() {
@@ -45,15 +90,13 @@ export function getSeriesList() {
 }
 
 export function getQuotesForSeries(slug) {
-  const series = db
-    .prepare("SELECT id, slug FROM series WHERE slug = ?")
-    .get(slug);
+  const series = getSeriesRecord(slug);
 
   if (!series) {
     return null;
   }
 
-  const quotes = db
+  return db
     .prepare(
       `SELECT id, speaker, quote_text AS quote
        FROM quotes
@@ -61,14 +104,10 @@ export function getQuotesForSeries(slug) {
        ORDER BY id ASC`
     )
     .all(series.id);
-
-  return quotes;
 }
 
 export function getRandomQuoteForSeries(slug) {
-  const series = db
-    .prepare("SELECT id FROM series WHERE slug = ?")
-    .get(slug);
+  const series = getSeriesRecord(slug);
 
   if (!series) {
     return null;
@@ -83,4 +122,42 @@ export function getRandomQuoteForSeries(slug) {
        LIMIT 1`
     )
     .get(series.id);
+}
+
+export function addQuoteToSeries(slug, speaker, quote) {
+  const series = getSeriesRecord(slug);
+
+  if (!series) {
+    return null;
+  }
+
+  const result = db
+    .prepare("INSERT INTO quotes (series_id, speaker, quote_text) VALUES (?, ?, ?)")
+    .run(series.id, speaker, quote);
+
+  return db
+    .prepare("SELECT id, speaker, quote_text AS quote FROM quotes WHERE id = ?")
+    .get(result.lastInsertRowid);
+}
+
+export function addQuotesToSeries(slug, quotes) {
+  const series = getSeriesRecord(slug);
+
+  if (!series) {
+    return null;
+  }
+
+  const insertQuote = db.prepare(
+    "INSERT INTO quotes (series_id, speaker, quote_text) VALUES (?, ?, ?)"
+  );
+
+  const tx = db.transaction((items) => {
+    for (const item of items) {
+      insertQuote.run(series.id, item.speaker, item.quote);
+    }
+  });
+
+  tx(quotes);
+
+  return quotes.length;
 }

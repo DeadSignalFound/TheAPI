@@ -1,0 +1,534 @@
+{
+  "murder-drones": [
+    {
+      "speaker": "Uzi",
+      "quote": "Bite me!"
+    },
+    {
+      "speaker": "N",
+      "quote": "I am so unbelievably sorry."
+    },
+    {
+      "speaker": "J",
+      "quote": "Corporate says they sent us to deal with this quietly."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "If the world wants a monster, it can have one."
+    },
+    {
+      "speaker": "N",
+      "quote": "I like doors. Doors are comforting."
+    },
+    {
+      "speaker": "V",
+      "quote": "Cute plan. Shame it won’t work."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I wear your smile because it fits."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "Okay, that was way too much screaming."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Safety first. Emotion later."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Silence tells the truth louder than words."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "Can we not die before lunch?"
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I don't do normal. I do survive."
+    },
+    {
+      "speaker": "N",
+      "quote": "I can be scary and polite at the same time."
+    },
+    {
+      "speaker": "V",
+      "quote": "Mercy is expensive. I charge interest."
+    },
+    {
+      "speaker": "J",
+      "quote": "Efficiency is kindness in corporate language."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "Every error becomes art eventually."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "Hope is loud when everything else is broken."
+    },
+    {
+      "speaker": "N",
+      "quote": "I brought optimism and probably a weapon."
+    },
+    {
+      "speaker": "V",
+      "quote": "You blinked. That was your first mistake."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "We reinforce the door, then panic responsibly."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "I trained for sports, not apocalypse."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "I remember everything you wanted forgotten."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "Drama later. Evacuation now."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I refuse to be the background character."
+    },
+    {
+      "speaker": "N",
+      "quote": "Friendship protocol still active."
+    },
+    {
+      "speaker": "J",
+      "quote": "Policy says: eliminate uncertainty."
+    },
+    {
+      "speaker": "V",
+      "quote": "I don't chase. I corner."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "Your fear tastes like static."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I built this plan out of spite."
+    },
+    {
+      "speaker": "N",
+      "quote": "We can save people and look cool doing it."
+    },
+    {
+      "speaker": "V",
+      "quote": "I was nice once. It was boring."
+    },
+    {
+      "speaker": "J",
+      "quote": "Metrics improve when resistance disappears."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "If it rattles, we bolt it down."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "I'm improvising with confidence."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "The past is patient. It waits."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "My shoes are not combat rated."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "No gods, no masters, just consequences."
+    },
+    {
+      "speaker": "N",
+      "quote": "I smile because it helps others breathe."
+    },
+    {
+      "speaker": "V",
+      "quote": "You brought courage to a blade fight."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I can hear the code under your skin."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I don't need permission to be dangerous."
+    },
+    {
+      "speaker": "N",
+      "quote": "Let's fix this before it gets weird-er."
+    },
+    {
+      "speaker": "J",
+      "quote": "Acceptable losses are still losses."
+    },
+    {
+      "speaker": "V",
+      "quote": "Run faster. I enjoy cardio."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Protocol keeps us alive when bravery fails."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "That plan had exactly zero chill."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Cold metal remembers warm hands."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "I vote for less screaming, more winning."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "My rage has excellent problem-solving skills."
+    },
+    {
+      "speaker": "N",
+      "quote": "Sometimes kindness is the sharpest tool."
+    },
+    {
+      "speaker": "V",
+      "quote": "I collect bad decisions like trophies."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "Your reflection already chose me."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "You can’t uninstall rebellion."
+    },
+    {
+      "speaker": "N",
+      "quote": "I can fight and still care."
+    },
+    {
+      "speaker": "J",
+      "quote": "Compliance is not optional."
+    },
+    {
+      "speaker": "V",
+      "quote": "I don’t threaten twice."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Doors are promises made of steel."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "That was a lot of explosions for one evening."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "The quiet is never empty."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "If we live, I'm posting this."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I’m done pretending this is normal."
+    },
+    {
+      "speaker": "N",
+      "quote": "I’d rather protect than perform."
+    },
+    {
+      "speaker": "V",
+      "quote": "You want mercy? Bring leverage."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I rewrite endings for fun."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "Being feared is easier than being understood."
+    },
+    {
+      "speaker": "N",
+      "quote": "I choose people, even when it hurts."
+    },
+    {
+      "speaker": "J",
+      "quote": "Results over sentiment."
+    },
+    {
+      "speaker": "V",
+      "quote": "This is your warning. Spend it wisely."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Preparation is love in practical form."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "My heartbeat has become a drum solo."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Every promise leaves a shadow."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "Someone cue dramatic lighting."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I turn panic into momentum."
+    },
+    {
+      "speaker": "N",
+      "quote": "I’m trying my best, aggressively."
+    },
+    {
+      "speaker": "V",
+      "quote": "I am the consequence you ignored."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "You call it corruption. I call it evolution."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I don't fit in boxes. I break them."
+    },
+    {
+      "speaker": "N",
+      "quote": "No one gets left behind. Not today."
+    },
+    {
+      "speaker": "J",
+      "quote": "Risk accepted. Target acquired."
+    },
+    {
+      "speaker": "V",
+      "quote": "Sharp claws, sharper instincts."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Good engineering is quiet heroism."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "I have questions and zero time."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Truth arrives with winter."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "I survived, therefore I slay."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I built my future from scrap."
+    },
+    {
+      "speaker": "N",
+      "quote": "Compassion is not a bug."
+    },
+    {
+      "speaker": "V",
+      "quote": "I'm not your villain. I'm your lesson."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "Entropy is my favorite lullaby."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "The dark doesn't scare me anymore."
+    },
+    {
+      "speaker": "N",
+      "quote": "Courage is just kindness under pressure."
+    },
+    {
+      "speaker": "J",
+      "quote": "Mission scope updated: everything."
+    },
+    {
+      "speaker": "V",
+      "quote": "I hear your heartbeat negotiating."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Panic later. Weld now."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "Worst day ever. Still standing."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "What is buried is never gone."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "Fashionably late to the apocalypse."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I’m not broken. I’m unfinished."
+    },
+    {
+      "speaker": "N",
+      "quote": "Let’s end this without losing ourselves."
+    },
+    {
+      "speaker": "V",
+      "quote": "You brought a plan. I brought certainty."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I bloom in ruined systems."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "My voice is louder than your fear."
+    },
+    {
+      "speaker": "N",
+      "quote": "I know what I am. I choose better."
+    },
+    {
+      "speaker": "J",
+      "quote": "Order restored by force."
+    },
+    {
+      "speaker": "V",
+      "quote": "Every predator was prey once."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Stability is built one bolt at a time."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "We keep moving or we become history."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Memory is a blade with two edges."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "Chaos, but make it iconic."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I came for answers, not forgiveness."
+    },
+    {
+      "speaker": "N",
+      "quote": "This team is strange. I like it."
+    },
+    {
+      "speaker": "V",
+      "quote": "Your bravado has a short battery life."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I can make silence scream."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "No more running from what I am."
+    },
+    {
+      "speaker": "N",
+      "quote": "I trust you. That means everything."
+    },
+    {
+      "speaker": "J",
+      "quote": "Deviation detected. Correcting."
+    },
+    {
+      "speaker": "V",
+      "quote": "I end arguments quickly."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "A secured colony is a living colony."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "We are absolutely winging this."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Even steel dreams of warmth."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "I'm allergic to bad vibes and monster attacks."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "If this is a nightmare, I’m the wake-up call."
+    },
+    {
+      "speaker": "N",
+      "quote": "Hope is heavy, but I can carry it."
+    },
+    {
+      "speaker": "V",
+      "quote": "You can’t outpace what you created."
+    },
+    {
+      "speaker": "Cyn",
+      "quote": "I am the glitch that learned your name."
+    },
+    {
+      "speaker": "Uzi",
+      "quote": "I’d rather burn bright than rust quietly."
+    },
+    {
+      "speaker": "N",
+      "quote": "I still believe we can choose differently."
+    },
+    {
+      "speaker": "J",
+      "quote": "Complete the objective. Ignore the noise."
+    },
+    {
+      "speaker": "V",
+      "quote": "I don’t need luck. I need targets."
+    },
+    {
+      "speaker": "Khan",
+      "quote": "Hard times require harder hinges."
+    },
+    {
+      "speaker": "Thad",
+      "quote": "Okay, new rule: fewer near-death moments."
+    },
+    {
+      "speaker": "Doll",
+      "quote": "Snow covers tracks, not sins."
+    },
+    {
+      "speaker": "Lizzy",
+      "quote": "If we survive this, I need a nap and a crown."
+    }
+  ],
+  "sunset-showdown": [],
+  "future-series": []
+}

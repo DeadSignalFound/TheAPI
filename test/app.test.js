@@ -26,6 +26,31 @@ test("GET /api/quotes/murder-drones returns quotes", async () => {
   assert.ok(response.body.total > 0);
 });
 
+test("POST /api/quotes/:series inserts one quote", async () => {
+  const response = await request(app)
+    .post("/api/quotes/murder-drones")
+    .send({ speaker: "Tester", quote: "Fresh quote for insert endpoint." });
+
+  assert.equal(response.status, 201);
+  assert.equal(response.body.series, "murder-drones");
+  assert.equal(response.body.quote.speaker, "Tester");
+});
+
+test("POST /api/quotes/:series/bulk inserts many quotes", async () => {
+  const response = await request(app)
+    .post("/api/quotes/murder-drones/bulk")
+    .send({
+      quotes: [
+        { speaker: "Tester", quote: "Bulk quote 1" },
+        { speaker: "Tester", quote: "Bulk quote 2" }
+      ]
+    });
+
+  assert.equal(response.status, 201);
+  assert.equal(response.body.series, "murder-drones");
+  assert.equal(response.body.inserted, 2);
+});
+
 test("GET /api/quotes/murder-drones/random returns one quote", async () => {
   const response = await request(app).get("/api/quotes/murder-drones/random");
 

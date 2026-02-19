@@ -4,8 +4,11 @@ const activeSeriesLabelEl = document.getElementById("active-series-label");
 const randomQuoteEl = document.getElementById("random-quote");
 const quotesTableEl = document.getElementById("quotes-table");
 const refreshRandomBtn = document.getElementById("refresh-random");
+const seriesSearchEl = document.getElementById("series-search");
+const starsCanvas = document.getElementById("stars");
 
 let currentSeries = "";
+let allSeries = [];
 
 const formatSeriesName = (name) =>
   name
@@ -41,14 +44,13 @@ function setActiveSeries(series) {
   });
 }
 
-async function loadSeries() {
-  const data = await fetchJson("/api/quotes");
-  const { series } = data;
-
-  seriesCountEl.textContent = String(series.length);
+function renderSeries(series) {
+  const query = seriesSearchEl.value.trim().toLowerCase();
+  const filtered = series.filter((name) => formatSeriesName(name).toLowerCase().includes(query));
+  seriesCountEl.textContent = String(filtered.length);
   seriesListEl.innerHTML = "";
 
-  series.forEach((name) => {
+  filtered.forEach((name) => {
     const button = document.createElement("button");
     button.className = "series-item";
     button.type = "button";
@@ -58,13 +60,27 @@ async function loadSeries() {
       setActiveSeries(name);
       await Promise.all([loadRandomQuote(), loadSeriesQuotes()]);
     });
+    if (name === currentSeries) {
+      button.classList.add("active");
+    }
     seriesListEl.append(button);
   });
 
-  if (series.length > 0) {
-    setActiveSeries(series[0]);
+  if (!filtered.includes(currentSeries)) {
+    refreshRandomBtn.disabled = true;
+  }
+}
+
+async function loadSeries() {
+  const data = await fetchJson("/api/quotes");
+  allSeries = data.series;
+
+  if (allSeries.length > 0) {
+    setActiveSeries(allSeries[0]);
     await Promise.all([loadRandomQuote(), loadSeriesQuotes()]);
   }
+
+  renderSeries(allSeries);
 }
 
 async function loadRandomQuote() {
@@ -113,9 +129,61 @@ async function loadSeriesQuotes() {
   }
 }
 
+function initStars() {
+  if (!starsCanvas) {
+    return;
+  }
+
+  const ctx = starsCanvas.getContext("2d");
+  if (!ctx) {
+    return;
+  }
+
+  let stars = [];
+
+  function resize() {
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+    stars = Array.from({ length: Math.floor(window.innerWidth / 16) }, () => ({
+      x: Math.random() * starsCanvas.width,
+      y: Math.random() * starsCanvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      v: Math.random() * 0.2 + 0.05
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+    for (const star of stars) {
+      star.y += star.v;
+      if (star.y > starsCanvas.height) {
+        star.y = 0;
+        star.x = Math.random() * starsCanvas.width;
+      }
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(210, 222, 255, 0.72)";
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  draw();
+}
+
 refreshRandomBtn.addEventListener("click", () => {
   loadRandomQuote();
 });
+
+seriesSearchEl.addEventListener("input", () => {
+  renderSeries(allSeries);
+});
+
+initStars();
 
 loadSeries().catch((error) => {
   randomQuoteEl.classList.add("muted");

@@ -14,9 +14,9 @@ npm start
 Open `http://localhost:3000` to use the web app.
 
 ## Features
-- Visual dashboard to browse all available series.
-- Random quote viewer per series.
-- Full quote list display for each series.
+- Redesigned neon/glassmorphism dashboard with animated effects.
+- Random quote viewer per series with quick shuffle action.
+- Full quote list display for each series plus live series filtering.
 - Public experience is read-only (quote uploads are blocked).
 
 ## Security hardening
